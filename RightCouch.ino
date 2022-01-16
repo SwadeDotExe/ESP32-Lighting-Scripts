@@ -9,7 +9,7 @@
 const char* ssid = "RHIT-OPEN";
 const char* password = "";
 
-String hostname = "entrylightESP";
+String hostname = "rightCouchESP";
 
 // Add your MQTT Broker IP address, example:
 const char* mqtt_server = "monitoringserver.reshall.rose-hulman.edu";
@@ -68,7 +68,7 @@ void callback(char* topic, byte* message, unsigned int length) {
 
   // If a message is received on the topic esp32/output, you check if the message is either "on" or "off".
   // Changes the output state according to the message
-  if (String(topic) == "EntryLight") {
+  if (String(topic) == "RightCouchLight") {
     Serial.print("Changing output to ");
 
      if (messageTemp == "true") {
@@ -88,10 +88,10 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("entrylightESP")) {
+    if (client.connect("rightCouchESP")) {
       Serial.println("connected");
       // Subscribe
-      client.subscribe("EntryLight");
+      client.subscribe("RightCouchLight");
     } else {
       Serial.print("failed, rc=");
       Serial.print(client.state());
